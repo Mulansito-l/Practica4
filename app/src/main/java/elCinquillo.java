@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class elCinquillo {
-    private int NumeroDeJugadores;
+    private int NumeroDeJugadores; //aaaaaa
     private ArrayList<Player> Players;
     private Scanner scanner;
     private Baraja barajaParaJugar;
