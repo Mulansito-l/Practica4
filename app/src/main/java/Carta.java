@@ -13,7 +13,7 @@ public class Carta {
         xPosition = 0;
         yPosition = 0;
         String nombreImagen = palo + valor + ".png";
-        image = new Sprite(nombreImagen,xPosition,yPosition);
+        //image = new Sprite(nombreImagen,xPosition,yPosition);
     }
 
     // Crear carta con posición dada
