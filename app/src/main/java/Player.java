@@ -21,6 +21,7 @@ public class Player {
     public void mostrarMano(){
         for (int i=0;i<manoDelJugador.getSizeDeMano();i++) {
             System.out.println(manoDelJugador.getCartaDeMano(i));
+            manoDelJugador.getCartaDeMano(i).mostrarEnCanvas();
         }
 
     }

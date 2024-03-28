@@ -8,6 +8,8 @@ public class Baraja {
         llenarBaraja(); //para que se llene en cuanto se crea una baraja
     }
     public void llenarBaraja() {
+        int x = 0;
+        int y = 0;
         String paloTemp="Oros";
         for (int i = 0; i < 3; i++) { //tipo de carta
             paloTemp = switch (i) {
@@ -17,7 +19,7 @@ public class Baraja {
                 default -> paloTemp;
             };
             for (int j=1;j<13;j++){ //las cartas de la baraja española van del 1 al 12
-                BarajaConCartas.add(new Carta(j,paloTemp));
+                BarajaConCartas.add(new Carta(j,paloTemp, x + (j * 200), y + (i * 400)));
             }
         }
     }
@@ -52,5 +54,12 @@ public class Baraja {
 
     public void barajear(){
         Collections.shuffle(BarajaConCartas);
+    }
+
+    // Metodo temporal para observar todas las cartas
+    public void mostrarBaraja(){
+        for(Carta carta : BarajaConCartas){
+            carta.mostrarEnCanvas();
+        }
     }
 }
