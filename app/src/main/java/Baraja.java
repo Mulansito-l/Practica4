@@ -74,8 +74,8 @@ public class Baraja {
         for (int i=0;i< BarajaConCartas.size();i++){
             if (getCarta(i).getValor()==8 || getCarta(i).getValor()==9){
                 removerCartaDeLaBaraja(i);
-                i-=1;
                 BarajaConCartas.remove(getCarta(i));
+                i-=1;
             }
         }
     }
