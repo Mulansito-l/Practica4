@@ -12,26 +12,18 @@ public class elCinquillo {
         scanner = new Scanner(System.in);
         NumeroDeJugadores = 0;
         barajaParaJugar = new Baraja();
-        barajaParaJugar.llenarBaraja();
     }
 
     public void jugarElCinquillo() {
         generarJugadores();
+        barajaParaJugar.remover8sY9s();
         barajaParaJugar.barajear();
-        System.out.println("Cuantas cartas tendra cada jugador: 10-15");
-        do {
-            cartasParaJugador = scanner.nextInt();
-            scanner.nextLine();
-            if (cartasParaJugador < 9 || cartasParaJugador > 16) {
-                System.out.println("Elija un numero valido de cartas 10-15");
-            }
-            else {
-                System.out.println("El numero de cartas para cada jugador sera: "+cartasParaJugador);
-                repartirCartas();
-                mostrarBarajas();
+        cartasParaJugador=barajaParaJugar.getSizeBaraja()/Players.size();
 
-            }
-        } while (cartasParaJugador<9 || cartasParaJugador >16);
+        System.out.println("El numero de cartas para cada jugador sera: "+cartasParaJugador);
+        repartirCartas();
+        mostrarManosDeJugador();
+
     }
 
     public void generarJugadores() {
@@ -47,15 +39,16 @@ public class elCinquillo {
             Players.add(new Player());
         }
     }
+
     public void repartirCartas() {
         for (Player player : Players) {
             for (int j=0;j<cartasParaJugador;j++){
                 player.AgregarAMano(barajaParaJugar.getCarta(0));
-                barajaParaJugar.sacarCartaDeLaBaraja();
+                barajaParaJugar.removerCartaDeLaBaraja(0);
             }
         }
     }
-    public void mostrarBarajas() {
+    public void mostrarManosDeJugador() {
         int i=1;
         for (Player player : Players) {
             System.out.println("La mano del jugador "+i+" es");
