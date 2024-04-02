@@ -24,4 +24,8 @@ public class ManoDeCartas {
     public Carta getCartaDeMano(int posicionDeCarta){
         return Mano.get(posicionDeCarta);
     }
+    public void removerCartaDeMano(int posicionDeCarta) {
+        Mano.remove(posicionDeCarta);
+
+    }
 }
