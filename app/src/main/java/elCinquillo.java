@@ -6,32 +6,32 @@ public class elCinquillo {
     private Scanner scanner;
     private Baraja barajaParaJugar;
     private int cartasParaJugador;
-
+    private ArrayList <Carta>ArrayDeOros;
+    private ArrayList <Carta>ArrayDeBastos;
+    private ArrayList <Carta>ArrayDeEspadas;
+    private ArrayList <Carta>ArrayDeCopas;
     public elCinquillo() {
         Players = new ArrayList<Player>();
         scanner = new Scanner(System.in);
         NumeroDeJugadores = 0;
         barajaParaJugar = new Baraja();
-        barajaParaJugar.llenarBaraja();
+        ArrayDeOros=new ArrayList<Carta>();
+        ArrayDeBastos=new ArrayList<Carta>();
+        ArrayDeEspadas=new ArrayList<Carta>();
+        ArrayDeCopas=new ArrayList<Carta>();
     }
 
     public void jugarElCinquillo() {
         generarJugadores();
+        barajaParaJugar.remover8sY9s();
         barajaParaJugar.barajear();
-        System.out.println("Cuantas cartas tendra cada jugador: 10-15");
-        do {
-            cartasParaJugador = scanner.nextInt();
-            scanner.nextLine();
-            if (cartasParaJugador < 9 || cartasParaJugador > 16) {
-                System.out.println("Elija un numero valido de cartas 10-15");
-            }
-            else {
-                System.out.println("El numero de cartas para cada jugador sera: "+cartasParaJugador);
-                repartirCartas();
-                mostrarBarajas();
+        cartasParaJugador = barajaParaJugar.getSizeBaraja() / Players.size();
 
-            }
-        } while (cartasParaJugador<9 || cartasParaJugador >16);
+        System.out.println("El numero de cartas para cada jugador sera: " + cartasParaJugador);
+        repartirCartas();
+        mostrarManosDeJugador();
+        agregar5AlCentro();
+        System.out.println(ArrayDeOros);
     }
 
     public void generarJugadores() {
@@ -47,21 +47,39 @@ public class elCinquillo {
             Players.add(new Player());
         }
     }
+
     public void repartirCartas() {
         for (Player player : Players) {
-            for (int j=0;j<cartasParaJugador;j++){
+            for (int j = 0; j < cartasParaJugador; j++) {
                 player.AgregarAMano(barajaParaJugar.getCarta(0));
-                barajaParaJugar.sacarCartaDeLaBaraja();
+                barajaParaJugar.removerCartaDeLaBaraja(0);
             }
         }
     }
-    public void mostrarBarajas() {
-        int i=1;
+
+    public void mostrarManosDeJugador() {
+        int i = 1;
         for (Player player : Players) {
-            System.out.println("La mano del jugador "+i+" es");
+            System.out.println("La mano del jugador " + i + " es");
             player.mostrarMano();
             System.out.println("");
             i++;
+        }
+    }
+    public void agregar5AlCentro() {
+        boolean bandera = false;
+        int j;
+        for (Player player : Players) {
+            j=0;
+            while (!bandera && j<player.getManoDelJugador().getSizeDeMano()) {
+                if (player.getManoDelJugador().getCartaDeMano(j).getValor() == 5 && (player.getManoDelJugador().getCartaDeMano(j).getPalo().equals("Oros"))) {
+                    ArrayDeOros.add(player.getManoDelJugador().getCartaDeMano(j));
+                    player.getManoDelJugador().removerCartaDeMano(j);
+                    bandera = true;
+                    player.setTurno(1);//El jugador que tenga el 5 de oros será el que comience
+                }
+                j++;
+            }
         }
     }
 }
