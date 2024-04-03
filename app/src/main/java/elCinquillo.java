@@ -17,7 +17,6 @@ public class elCinquillo {
         barajaParaJugar = new Baraja();
         ArrayDeOros=new ArrayList<Carta>();
         ArrayDeBastos=new ArrayList<Carta>();
-        ArrayDeOros=new ArrayList<Carta>();
         ArrayDeEspadas=new ArrayList<Carta>();
         ArrayDeCopas=new ArrayList<Carta>();
     }
@@ -69,8 +68,9 @@ public class elCinquillo {
     }
     public void agregar5AlCentro() {
         boolean bandera = false;
-        int j=0;
+        int j;
         for (Player player : Players) {
+            j=0;
             while (!bandera && j<player.getManoDelJugador().getSizeDeMano()) {
                 if (player.getManoDelJugador().getCartaDeMano(j).getValor() == 5 && (player.getManoDelJugador().getCartaDeMano(j).getPalo().equals("Oros"))) {
                     ArrayDeOros.add(player.getManoDelJugador().getCartaDeMano(j));
