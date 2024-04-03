@@ -25,13 +25,14 @@ public class elCinquillo {
         generarJugadores();
         barajaParaJugar.remover8sY9s();
         barajaParaJugar.barajear();
-        cartasParaJugador = barajaParaJugar.getSizeBaraja() / players.size();
+        cartasParaJugador = barajaParaJugar.getSizeBaraja() / numeroDeJugadores;
 
         System.out.println("El numero de cartas para cada jugador sera: " + cartasParaJugador);
         repartirCartas();
         mostrarManosDeJugador();
         agregar5AlCentro();
         System.out.println(arrayDeOros);
+        mostrarManosDeJugador();
     }
 
     public void generarJugadores() {
@@ -69,12 +70,27 @@ public class elCinquillo {
     public void agregar5AlCentro() {
         boolean bandera = false;
         int j;
+        int sizeManoEnTurno;
+        int valorCarta;
+        String paloCarta;
+        Carta carta;
+
         for (Player player : players) {
+
             j=0;
-            while (!bandera && j<player.getManoDelJugador().getSizeDeMano()) {
-                if (player.getManoDelJugador().getCartaDeMano(j).getValor() == 5 && (player.getManoDelJugador().getCartaDeMano(j).getPalo().equals("Oros"))) {
-                    arrayDeOros.add(player.getManoDelJugador().getCartaDeMano(j));
-                    player.getManoDelJugador().removerCartaDeMano(j);
+
+            ManoDeCartas mano = player.getManoDelJugador();
+            sizeManoEnTurno = mano.getSizeDeMano();
+            while (!bandera && j< sizeManoEnTurno ) {
+
+
+                carta = mano.getCartaDeMano(j);
+                valorCarta = carta.getValor();
+                paloCarta = carta.getPalo();
+                if ( valorCarta == 5 && (paloCarta.equals("Oros"))) {
+
+                    arrayDeOros.add(carta);
+                    mano.removerCartaDeMano(j);
                     bandera = true;
                     player.setTurno(1);//El jugador que tenga el 5 de oros será el que comience
                 }
@@ -82,4 +98,9 @@ public class elCinquillo {
             }
         }
     }
+
+    public void buscarOtro5(){
+
+    }
+
 }
