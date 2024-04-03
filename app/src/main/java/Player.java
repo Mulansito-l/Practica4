@@ -3,13 +3,13 @@ public class Player {
     private ManoDeCartas manoDelJugador;
     private int ladoElegido;
     Scanner scanner=new Scanner(System.in);
-    private boolean EnTurno;
-    private int Turno;
+    private boolean enTurno;
+    private int turno;
     private int puntuacionTotal;
     private int puntuacionDeRonda=0;
     private String estado="noWinner";
     public Player() {
-        EnTurno = true;
+        enTurno = true;
         estado = "noWinner";
         manoDelJugador=new ManoDeCartas();
     }
@@ -20,7 +20,7 @@ public class Player {
         manoDelJugador.agregarCartaAMano(0,laCarta);
     }
     public void setTurno(int Turno){
-        this.Turno=Turno;
+        this.turno =Turno;
     }
     public void mostrarMano(){
         for (int i=0;i<manoDelJugador.getSizeDeMano();i++) {
