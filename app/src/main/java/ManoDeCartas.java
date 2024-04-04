@@ -21,6 +21,16 @@ public class ManoDeCartas {
         int sizeDeMano= mano.size();
         return sizeDeMano;
     }
+
+    public Carta getCartaDe(int valor, String palo){
+        for (Carta cartita:mano){
+            if (cartita.getValor() == valor && cartita.getPalo().equals(palo) ){
+                return cartita;
+            }
+        }
+        return null;
+    }
+
     public Carta getCartaDeMano(int posicionDeCarta){
         return mano.get(posicionDeCarta);
     }
