@@ -6,6 +6,7 @@ public class elCinquillo {
     private Scanner scanner;
     private Baraja barajaParaJugar;
     private int cartasParaJugador;
+    private int turnoActual;
     private ArrayList <Carta> arrayDeOros;
     private ArrayList <Carta> arrayDeBastos;
     private ArrayList <Carta> arrayDeEspadas;
@@ -32,7 +33,6 @@ public class elCinquillo {
         mostrarManosDeJugador();
         agregar5AlCentro();
         System.out.println(arrayDeOros);
-        mostrarManosDeJugador();
     }
 
     public void generarJugadores() {
@@ -75,32 +75,57 @@ public class elCinquillo {
         String paloCarta;
         Carta carta;
 
-        for (Player player : players) {
+        for (int i=0; i<players.size(); i++) {
 
             j=0;
 
-            ManoDeCartas mano = player.getManoDelJugador();
+            ManoDeCartas mano = players.get(i).getManoDelJugador();
             sizeManoEnTurno = mano.getSizeDeMano();
+
             while (!bandera && j< sizeManoEnTurno ) {
 
-
-                carta = mano.getCartaDeMano(j);
+                carta = players.get(i).getManoDelJugador().getCartaDeMano(j);
                 valorCarta = carta.getValor();
                 paloCarta = carta.getPalo();
+
                 if ( valorCarta == 5 && (paloCarta.equals("Oros"))) {
 
                     arrayDeOros.add(carta);
-                    mano.removerCartaDeMano(j);
+                    players.get(i).getManoDelJugador().removerCartaDeMano(j);
                     bandera = true;
-                    player.setTurno(1);//El jugador que tenga el 5 de oros será el que comience
+                    turnoActual=i; //el jugador que tenga el 5 de oros, tendra el primer turno
                 }
                 j++;
             }
         }
     }
 
-    public void buscarOtro5(){
+    public void buscarOtro5() {
+        boolean bandera = false;
+        Player jugadorActual = players.get(turnoActual);
+        ManoDeCartas mano = jugadorActual.getManoDelJugador();
+        int sizeMano = mano.getSizeDeMano();
+        int i = 0; //para controlar
 
+        while (!bandera && i < sizeMano) {
+            Carta carta = mano.getCartaDeMano(i);
+
+            if (carta.getValor() == 5) {
+                switch (carta.getPalo()){
+                    case "Copas" -> arrayDeCopas.add(carta);
+                    case "Bastos" -> arrayDeBastos.add(carta);
+                    case "Espadas" -> arrayDeEspadas.add(carta);
+                }
+
+                mano.removerCartaDeMano(i); // Remueve la carta de la mano del jugador actual
+                bandera = true;
+            }
+            i++;
+        }
+
+        if (!bandera) {
+            System.out.println("No se encontró ninguna carta con valor 5 en la mano del jugador actual");
+        }
     }
 
 }
