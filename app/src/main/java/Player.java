@@ -16,6 +16,10 @@ public class Player {
     public ManoDeCartas getManoDelJugador(){
         return manoDelJugador;
     }
+    public Carta getCartaDe(int valor, String palo){
+        return manoDelJugador.getCartaDe(valor, palo);
+    }
+
     public void AgregarAMano(Carta laCarta){
         manoDelJugador.agregarCartaAMano(0,laCarta);
     }
