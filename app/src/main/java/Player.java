@@ -8,10 +8,15 @@ public class Player {
     private int puntuacionTotal;
     private int puntuacionDeRonda=0;
     private String estado="noWinner";
-    public Player() {
+    public Player(int turno) {
         enTurno = true;
         estado = "noWinner";
+        this.turno = turno;
         manoDelJugador=new ManoDeCartas();
+    }
+
+    public int getTurno(){
+        return turno;
     }
     public ManoDeCartas getManoDelJugador(){
         return manoDelJugador;
