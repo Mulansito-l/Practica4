@@ -269,7 +269,7 @@ public class elCinquillo {
                         cartaAux = arrayDeOros.get( cantidaDeCartasEn - 1 );
                         valorCartaAux = cartaAux.getValor();
 
-                        if ( valorCarta == (valorCartaAux-1) ){
+                        if ( valorCarta == (valorCartaAux+1) ){
                             arrayDeOros.add(cantidaDeCartasEn,carta);
                             mano.removerCartaDeMano(i);
                             bandera = true;
@@ -289,7 +289,7 @@ public class elCinquillo {
                         cartaAux = arrayDeBastos.get( cantidaDeCartasEn -1 );
                         valorCartaAux = cartaAux.getValor();
 
-                        if ( valorCarta == (valorCartaAux-1) ){
+                        if ( valorCarta == (valorCartaAux+1) ){
                             arrayDeBastos.add(cantidaDeCartasEn,carta);
                             mano.removerCartaDeMano(i);
                             bandera = true;
@@ -308,7 +308,7 @@ public class elCinquillo {
                         cartaAux = arrayDeEspadas.get( cantidaDeCartasEn -1 );
                         valorCartaAux = cartaAux.getValor();
 
-                        if ( valorCarta == (valorCartaAux-1) ){
+                        if ( valorCarta == (valorCartaAux+1) ){
                             arrayDeEspadas.add(cantidaDeCartasEn,carta);
                             mano.removerCartaDeMano(i);
                             bandera = true;
@@ -327,7 +327,7 @@ public class elCinquillo {
                         cartaAux = arrayDeCopas.get( cantidaDeCartasEn -1 );
                         valorCartaAux = cartaAux.getValor();
 
-                        if ( valorCarta == (valorCartaAux-1) ){
+                        if ( valorCarta == (valorCartaAux+1) ){
                             arrayDeCopas.add(cantidaDeCartasEn,carta);
                             mano.removerCartaDeMano(i);
                             bandera = true;
